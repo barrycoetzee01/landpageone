@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Landing Page</title>
+  <title>LandPageOne</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -12,66 +13,246 @@
     }
 
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: 'Inter', sans-serif;
+      background: #0a0a1a;
+      color: #ffffff;
       min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── RADIAL GLOW BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 700px;
+      background: radial-gradient(ellipse at center,
+        rgba(30, 90, 220, 0.75) 0%,
+        rgba(20, 60, 180, 0.5) 30%,
+        rgba(10, 30, 100, 0.2) 65%,
+        transparent 80%
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: relative;
+      z-index: 10;
       display: flex;
       align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #fff;
+      justify-content: space-between;
+      padding: 24px 60px;
     }
 
-    .hero {
-      text-align: center;
-      padding: 2rem;
-      max-width: 700px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
+    .nav-logo {
+      font-size: 1.25rem;
       font-weight: 700;
-      margin-bottom: 1.5rem;
-      line-height: 1.1;
-      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+      color: #ffffff;
+      letter-spacing: -0.3px;
     }
 
-    .hero p {
-      font-size: clamp(1.1rem, 2vw, 1.35rem);
-      margin-bottom: 2.5rem;
-      opacity: 0.9;
-      line-height: 1.6;
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
     }
 
-    .cta-button {
-      display: inline-block;
-      padding: 1rem 2.5rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #764ba2;
-      background: #fff;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
       text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
     }
 
-    .cta-button:hover {
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .nav-cta {
+      background: #ffffff;
+      color: #0a0a1a;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: #e8e8e8;
+      transform: translateY(-1px);
+    }
+
+    /* ── HERO SECTION ── */
+    .hero {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      padding: 80px 20px 100px;
+    }
+
+    /* Badge pill */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50px;
+      padding: 8px 18px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 40px;
+      backdrop-filter: blur(8px);
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background: #4da6ff;
+      border-radius: 50%;
+    }
+
+    /* Main headline */
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -2px;
+      color: #ffffff;
+      margin-bottom: 28px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Subheading */
+    .hero p {
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      color: rgba(255,255,255,0.6);
+      max-width: 480px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+    }
+
+    /* CTA buttons */
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: #0a0a1a;
+      border: none;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background: #e8e8e8;
       transform: translateY(-2px);
-      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 8px 30px rgba(255,255,255,0.15);
     }
 
-    .cta-button:active {
-      transform: translateY(0);
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s, transform 0.2s;
+      text-decoration: none;
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.14);
+      transform: translateY(-2px);
+    }
+
+    /* Arrow symbol */
+    .arrow {
+      font-size: 1rem;
+      display: inline-block;
+      transform: rotate(-45deg);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav {
+        padding: 20px 24px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hero {
+        padding: 60px 20px 80px;
+      }
+      .hero h1 {
+        letter-spacing: -1px;
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-logo">CHELCAMTECH</div>
+    <ul class="nav-links">
+      <li><a href="#">Features</a></li>
+      <li><a href="#">How It Works</a></li>
+      <li><a href="#">Pricing</a></li>
+    </ul>
+    <button class="nav-cta">Get Started <span class="arrow">↗</span></button>
+  </nav>
+
+  <!-- HERO -->
   <section class="hero">
-    <h1>Build Something Amazing Today</h1>
-    <p>Transform your ideas into reality with our powerful platform. Start building for free and scale as you grow.</p>
-    <a href="#" class="cta-button">Get Started Free</a>
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Launch your website in hours, not days
+    </div>
+
+    <h1>Let's Build Something<br>Amazing Today</h1>
+
+    <p>Supercharge your growth, with technology built to elevate your vision. Transform your ideas into reality with our powerful platform.</p>
+	
+
+
+    <div class="hero-buttons">
+      <a href="#" class="btn-primary">Get Started <span class="arrow">↗</span></a>
+      <a href="#" class="btn-secondary">See It in Action <span class="arrow">↗</span></a>
+    </div>
   </section>
+
 </body>
 </html>
